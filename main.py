@@ -10,6 +10,7 @@ import time
 import pyautogui
 import keyboard
 import configparser
+import urllib.request
 import os
 
 ASCII_ART = """
@@ -61,6 +62,9 @@ def run_program():
     print(" [+] Press {} to start the program.".format(SETTINGS['key']))
 
     toggled = False
+
+    urllib.request.urlretrieve("https://github.com/Elliot-Potts/CS-GO-Auto-Accept/blob/master/accept_image.png?raw=true",
+                               "accept_image.png")
 
     while True:
 
