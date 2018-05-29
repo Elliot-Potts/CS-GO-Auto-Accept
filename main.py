@@ -48,6 +48,8 @@ def run_program():
         getHotKey = input("  [!] Enter a single key: ")
         print(" [+] Hotkey changed to {}.".format(getHotKey))
 
+        SETTINGS['key'] = getHotKey
+
         openConf = open(PROJ_PATH+"\settings.ini", "w")
         CONFIG.add_section("Settings")
         CONFIG.set("Settings", "hotkey", getHotKey)
