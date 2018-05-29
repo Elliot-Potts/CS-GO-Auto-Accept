@@ -12,6 +12,15 @@ import keyboard
 import configparser
 import os
 
+ASCII_ART = """
+   ___ ___  ___  ___      _       _         _                  _           
+  / __/ __|/ __|/ _ \    /_\ _  _| |_ ___  /_\  __ __ ___ _ __| |_ ___ _ _ 
+ | (__\__ \ (_ | (_) |  / _ \ || |  _/ _ \/ _ \/ _/ _/ -_) '_ \  _/ _ \ '_|
+  \___|___/\___|\___/  /_/ \_\_,_|\__\___/_/ \_\__\__\___| .__/\__\___/_|  
+                               written by Elliot Potts   |_|               
+                                                         """
+
+
 SETTINGS = {'key': None}
 CONFIG = configparser.ConfigParser()
 PROJ_PATH = "C:\Potts' Software\CSGO Autoaccept"
@@ -77,6 +86,7 @@ def run_program():
 
 
 if __name__ == '__main__':
+    print(ASCII_ART)
     settingsInit()
     run_program()
 
