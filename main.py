@@ -63,7 +63,7 @@ def run_program():
 
     toggled = False
 
-    urllib.request.urlretrieve("https://github.com/Elliot-Potts/CS-GO-Auto-Accept/blob/master/accept_image.png?raw=true",
+    urllib.request.urlretrieve("https://i.imgur.com/nsjO50f.png",
                                "accept_image.png")
 
     while True:
