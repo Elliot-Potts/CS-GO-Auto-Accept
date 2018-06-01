@@ -85,8 +85,9 @@ def run_program():
                 if str(type(val)) == "<class 'NoneType'>":
                     pass
                 else:
-                    print(" [+] ACCEPT found at {}, accepting!".format(str(val)))
-                    pyautogui.click(val)
+                    for i in range(2):
+                        print(" [+] ACCEPT found at {}, accepting! ({}/2).".format(str(val), str(i+1)))
+                        pyautogui.click(val)
             except TypeError:
                 pass
 
