@@ -68,7 +68,6 @@ def run_program():
                                "pan_accept_image.png")
 
     while True:
-
         if keyboard.is_pressed(SETTINGS['key']):
             if not toggled:
                 toggled = True
