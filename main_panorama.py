@@ -11,7 +11,6 @@ import time
 import pyautogui
 import keyboard
 import configparser
-import urllib.request
 import os
 
 ASCII_ART = """
@@ -33,11 +32,13 @@ def settingsInit():
         if os.path.isfile(PROJ_PATH+"\settings.ini"):
             CONFIG.read(PROJ_PATH+"\settings.ini")
             SETTINGS['key'] = CONFIG.get("Settings", "hotkey")
+            SETTINGS['max_tries'] = CONFIG.get("Settings", "max_tries")
         else:
             os.chdir(PROJ_PATH)
             intConf = open("settings.ini", "w")
             CONFIG.add_section("Settings")
             CONFIG.set("Settings", "hotkey", "N")
+            CONFIG.set("Settings", "max_tries", 2)
             CONFIG.write(intConf)
             intConf.close()
     else:
@@ -45,56 +46,46 @@ def settingsInit():
 
 
 def run_program():
-    if SETTINGS['key'] is None:
+    if not SETTINGS['key']:
         print(" [-] You have't configured your hotkey.")
-        getHotKey = input("  [!] Enter a single key: ")
-        print(" [+] Hotkey changed to {}.".format(getHotKey))
+        new_hot_key = input("  [!] Enter a single key: ")
+        print(" [+] Hotkey changed to {}.".format(new_hot_key))
 
-        SETTINGS['key'] = getHotKey
+        SETTINGS['key'] = new_hot_key
 
         openConf = open(PROJ_PATH+"\settings.ini", "w")
         CONFIG.add_section("Settings")
-        CONFIG.set("Settings", "hotkey", getHotKey)
+        CONFIG.set("Settings", "hotkey", new_hot_key)
         CONFIG.write(openConf)
         openConf.close()
-    else:
-        pass
 
     print(" [+] Press {} to start the program.".format(SETTINGS['key']))
 
     toggled = False
-
-    urllib.request.urlretrieve("https://i.imgur.com/0UPHbGX.png",
-                               "pan_accept_image.png")
 
     while True:
         if keyboard.is_pressed(SETTINGS['key']):
             if not toggled:
                 toggled = True
                 print(" [+] Toggled on.")
-                time.sleep(1)
             else:
                 toggled = False
                 print(" [-] Toggled off.")
-                time.sleep(1)
 
-        if toggled is True:
+            time.sleep(1)
+
+        if toggled:
             try:
-                val = pyautogui.locateCenterOnScreen("pan_accept_image.png")
-
-                if str(type(val)) == "<class 'NoneType'>":
-                    pass
-                else:
-                    for i in range(2):
-                        print(" [+] ACCEPT found at {}, accepting! ({}/2).".format(str(val), str(i+1)))
-                        pyautogui.click(val)
-            except TypeError:
+                accept_btn = pyautogui.locateCenterOnScreen("pan_accept_btn.png")
+                assert accept_btn is not None
+            except Exception:
                 pass
+            else:
+                for i in range(SETTINGS["max_tries"]):
+                    print(" [+] ACCEPT found at {}, accepting! ({}/{}).".format(str(accept_btn), str(i + 1), SETTINGS["max_tries"]))
+                    pyautogui.click(accept_btn)
+                    time.sleep(0.5)
 
-
-if __name__ == '__main__':
-    print(ASCII_ART)
-    settingsInit()
-    run_program()
-
-
+print(ASCII_ART)
+settingsInit()
+run_program()
