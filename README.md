@@ -17,4 +17,4 @@ The program will ask you for a hotkey when you start it, make sure you use a sin
 If you want to change this value later, go to: C:\Potts' Software\CSGO Autoaccept\settings.ini
 <br><br>
 **Can this be abused?**<br>
-This program will not help you stay AFK in matches, it simply an auto-clicker for the match accept button.
+This program will not help you stay AFK in matches, it's simply an auto-clicker for the match accept button.
