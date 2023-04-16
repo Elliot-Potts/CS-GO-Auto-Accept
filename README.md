@@ -7,7 +7,7 @@ The program should be started on the same display as CS:GO. There are sometimes 
 ## FAQ
 
 **Does this work with Panorama UI?**<br>
-As of 7/10/2018 it should work with the new Panorama UI. <br>
+As of 7/10/2018 it should work with the new Panorama UI.
 <br><br>
 **Does it work with VAC?**<br>
 The program makes no modifications to the actual game process and should therefore be unseen by VAC.
